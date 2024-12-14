@@ -119,6 +119,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Mohamed Elsayed - [@Thesnak](https://github.com/Thesnak)
+Mohamed Mahmoud Ali - [@Thesnak](https://github.com/Thesnak)
 
 Project Link: [https://github.com/Thesnak/ai-resume-analyzer](https://github.com/Thesnak/ai-resume-analyzer)
