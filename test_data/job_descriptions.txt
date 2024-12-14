@@ -1,0 +1,98 @@
+# Software Engineer Position
+Job Title: Senior Software Engineer
+Location: Remote/Hybrid
+
+Required Skills:
+- 5+ years of experience in Python development
+- Strong knowledge of web frameworks (Django, Flask)
+- Experience with RESTful APIs
+- Proficient in SQL and database design
+- Git version control
+- Unit testing and TDD practices
+
+Preferred Skills:
+- Experience with cloud platforms (AWS, Azure)
+- Knowledge of containerization (Docker, Kubernetes)
+- Frontend development skills (React, Angular)
+- CI/CD pipeline experience
+- Agile methodology
+
+Education:
+- Bachelor's degree in Computer Science or related field
+- Master's degree preferred
+
+---
+
+# Data Scientist Position
+Job Title: Senior Data Scientist
+Location: On-site
+
+Required Skills:
+- 3+ years experience in data science
+- Strong Python programming skills
+- Expertise in machine learning algorithms
+- Proficient in data visualization
+- Experience with SQL and NoSQL databases
+- Knowledge of statistical analysis
+
+Preferred Skills:
+- Deep learning framework experience (TensorFlow, PyTorch)
+- Big data technologies (Spark, Hadoop)
+- Experience with cloud ML platforms
+- Natural Language Processing
+- Computer Vision
+
+Education:
+- Master's degree in Data Science, Statistics, or related field
+- PhD preferred
+
+---
+
+# Full Stack Developer Position
+Job Title: Full Stack Developer
+Location: Hybrid
+
+Required Skills:
+- 3+ years of full stack development experience
+- Strong JavaScript/TypeScript skills
+- Experience with Node.js
+- Proficient in React or Angular
+- SQL database experience
+- RESTful API development
+
+Preferred Skills:
+- Experience with MongoDB
+- Knowledge of AWS services
+- Docker containerization
+- GraphQL
+- Microservices architecture
+- CI/CD implementation
+
+Education:
+- Bachelor's degree in Computer Science or equivalent experience
+
+---
+
+# DevOps Engineer Position
+Job Title: Senior DevOps Engineer
+Location: Remote
+
+Required Skills:
+- 5+ years of DevOps experience
+- Strong Linux/Unix administration skills
+- Experience with AWS or Azure
+- Expertise in Docker and Kubernetes
+- Configuration management tools (Ansible, Puppet)
+- Shell scripting
+
+Preferred Skills:
+- Multiple cloud platform experience
+- Infrastructure as Code (Terraform)
+- Python or Go programming
+- Security best practices
+- Monitoring and logging solutions
+- CI/CD pipeline optimization
+
+Education:
+- Bachelor's degree in Computer Science or related field
+- Relevant certifications (AWS, Azure, etc.)
