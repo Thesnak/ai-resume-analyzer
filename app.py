@@ -13,6 +13,68 @@ from job_analyzer import JobAnalyzer
 def load_spacy_model():
     return spacy.load("en_core_web_sm")
 
+def match_resume_to_job(resume_data: dict, job_description_data: dict) -> dict:
+    """
+    Match resume to job description and provide detailed analysis
+    
+    Args:
+        resume_data (dict): Parsed resume data
+        job_description_data (dict): Parsed job description data
+    
+    Returns:
+        dict: Detailed match analysis
+    """
+    # Initialize models
+    import spacy
+    resume_parser = spacy.load("en_core_web_sm")
+    
+    # Extract raw texts
+    resume_text = resume_data.get('raw_text', '').lower()
+    job_description_text = job_description_data.get('raw_text', '').lower()
+    
+    # Extract resume skills and job requirements
+    resume_skills = set(skill.lower() for skill in resume_data.get('skills', []))
+    
+    # Extract job requirements from job description
+    job_requirements = job_description_data.get('requirements', {})
+    required_skills_text = ' '.join(job_requirements.get('required_skills', []))
+    
+    # Use NLP to extract skills from job description
+    job_doc = resume_parser(required_skills_text)
+    job_skills = set()
+    
+    # Extract skills from job description
+    skill_keywords = [
+        'python', 'java', 'javascript', 'c++', 'sql', 
+        'machine learning', 'data science', 'react', 
+        'node.js', 'docker', 'kubernetes', 'aws',
+        'html', 'css', 'django', 'flask', 'tensorflow', 
+        'pytorch', 'pandas', 'numpy', 'git', 'agile'
+    ]
+    
+    for token in job_doc:
+        for skill in skill_keywords:
+            if skill in token.text.lower():
+                job_skills.add(skill)
+    
+    # Match skills
+    matched_skills = resume_skills.intersection(job_skills)
+    
+    # Calculate match score
+    total_job_skills = len(job_skills)
+    matched_skill_count = len(matched_skills)
+    match_score = (matched_skill_count / total_job_skills * 100) if total_job_skills > 0 else 0
+    
+    # Prepare detailed analysis
+    analysis = {
+        'match_score': match_score,
+        'total_job_skills': total_job_skills,
+        'matched_skills': list(matched_skills),
+        'recommended_improvements': list(job_skills - resume_skills)
+    }
+    
+    return analysis
+
 def main():
     st.set_page_config(page_title="AI Resume Analyzer", layout="wide")
     

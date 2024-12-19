@@ -3,6 +3,7 @@ from typing import Dict, List, Tuple
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+import re
 
 class JobAnalyzer:
     def __init__(self, nlp=None):
@@ -49,25 +50,30 @@ class JobAnalyzer:
         tfidf_matrix = self.vectorizer.fit_transform(texts)
         
         # Calculate cosine similarity
-        similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
+        cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
         
-        # Get important terms from job description
-        job_doc = self.nlp(job_description)
-        important_terms = [token.text for token in job_doc if token.pos_ in ["NOUN", "PROPN"]]
+        # Extract requirements
+        requirements = self.extract_requirements(job_description)
         
-        # Calculate term presence
-        term_scores = {}
-        resume_doc = self.nlp(resume_text.lower())
-        resume_text_lower = resume_text.lower()
+        return cosine_sim, requirements
+
+    def analyze_job_description(self, job_description: str) -> Dict[str, List[str]]:
+        """
+        Analyze job description
         
-        for term in important_terms:
-            term_lower = term.lower()
-            if term_lower in resume_text_lower:
-                term_scores[term] = 1.0
-            else:
-                term_scores[term] = 0.0
+        Args:
+            job_description (str): Job description text
         
-        return similarity, term_scores
+        Returns:
+            Dict containing job description analysis
+        """
+        # Extract requirements
+        requirements = self.extract_requirements(job_description)
+        
+        return {
+            'raw_text': job_description,
+            'requirements': requirements
+        }
 
     def analyze_skill_gaps(self, resume_skills: List[str], job_requirements: Dict[str, List[str]]) -> Dict:
         """Analyze skill gaps between resume and job requirements"""
@@ -102,3 +108,29 @@ class JobAnalyzer:
             suggestions.append("Your resume matches some requirements but could be improved.")
         
         return suggestions
+
+def analyze_job_description(file_path: str) -> Dict[str, List[str]]:
+    """
+    Main function to analyze job description
+    
+    Args:
+        file_path (str): Path to the job description file
+    
+    Returns:
+        Dict containing job description analysis
+    """
+    # Read job description file
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            job_description = file.read()
+    except Exception as e:
+        print(f"Error reading job description: {e}")
+        return {}
+    
+    # Create job analyzer
+    analyzer = JobAnalyzer()
+    
+    # Analyze job description
+    analysis = analyzer.analyze_job_description(job_description)
+    
+    return analysis
